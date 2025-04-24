@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Favorite Haikus</title>
+</head>
+
+<body>
+
+  <h1>Your Favorite Haikus Saved</h1>
+
+  <nav>
+    <a href="haikuHome.html">Home</a> |
+    <a href="browseHaikus.html">Browse</a> |
+    <a href="writeHaiku.html">Write</a> |
+    <a href="aboutHaiku.html">About</a>
+  </nav>
+
+  <hr>
+
+  {% if favorites %}
+    {% for haiku in favorites %}
+      <div>
+        <p>{{ haiku.line1 }}</p>
+        <p>{{ haiku.line2 }}</p>
+        <p>{{ haiku.line3 }}</p>
+        <hr>
+      </div>
+    {% endfor %}
+
+  {% else %}
+
+    <p>You haven't saved any haiku.</p>
+
+  {% endif %}
+
+</body>
+</html>
