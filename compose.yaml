@@ -1,0 +1,24 @@
+
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    environment:
+      - MONGO_URI=
+      - MONGO_DB=
+      - MONGO_HOST=mongo
+      - FLASK_ENV=development
+    ports:
+      - "27017:27017"
+
+  web-app:
+    build: ./web-app
+    environment:
+      - MONGO_URI=
+      - MONGO_DB=
+      - FLASK_ENV=development
+    ports: 
+      - "5000:5000"
+    depends_on:
+      - mongodb
+
