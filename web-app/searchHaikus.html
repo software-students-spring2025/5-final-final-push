@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Haikus</title>
+</head>
+<body>
+
+  <h1>Search Haikus</h1>
+
+  <nav>
+    <a href="haikuHome.html">Home</a> |
+    <a href="browseHaikus.html">Browse</a> |
+    <a href="writeHaiku.html">Write</a> |
+    <a href="aboutHaiku.html">About</a>
+  </nav>
+
+  <hr>
+
+  <form action="searchHaikus.html" method="GET">
+    <label for="query">Enter keyword:</label><br>
+    <input type="text" id="query" name="q" required>
+    <button type="submit">Search</button>
+  </form>
+
+  <hr>
+
+  {% if results is defined %}
+
+    {% if results %}
+    
+      <h2>Results:</h2>
+      {% for haiku in results %}
+        <div>
+          <p>{{ haiku.line1 }}</p>
+          <p>{{ haiku.line2 }}</p>
+          <p>{{ haiku.line3 }}</p>
+          <hr>
+        </div>
+      {% endfor %}
+
+    {% else %}
+      <p>No haiku matched your search.</p>
+    {% endif %}
+
+  {% endif %}
+
+</body>
+</html>
