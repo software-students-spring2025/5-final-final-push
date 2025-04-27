@@ -147,3 +147,7 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# MongoDB metrics
+data/diagnostic.data/
+data/journal/
