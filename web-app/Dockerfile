@@ -1,14 +1,23 @@
-FROM python:3.13-slim
+# Use official lightweight Python image
+FROM python:3.10-slim
 
+# Set working directory inside container
 WORKDIR /app
-COPY . /app
 
-RUN apt-get update && apt-get install -y 
+# Install pipenv
+RUN pip install pipenv
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy Pipenv files first to install deps early
+COPY Pipfile ./
 
+# Install dependencies
+RUN pipenv install --deploy --ignore-pipfile
+
+# Copy rest of the app (code, static files, templates)
 COPY . .
 
+# Expose port for Flask app
 EXPOSE 5001
-CMD ["python", "app.py"]
+
+# Run the Flask app
+CMD ["pipenv", "run", "python", "app.py"]
