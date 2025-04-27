@@ -5,9 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Blossom Haikus</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
 </head>
 
-<body>
+<body class="home">
   <header>
     <h1>Blossom Haikus</h1>
     <nav>
@@ -22,13 +24,13 @@
   </header>
 
   <main>
-    <section>
+    <section class="welcome">
       <h2>Welcome to Blossom Haikus</h2>
       <p>A place to write, read, and share haikus with a community of people who love poetry. Let your creativity blossom!</p>
       <a href="writeHaikus.html">Start Writing →</a>
     </section>
 
-    <section>
+    <section class="featured">
       <h3>Featured Haikus</h3>
       <ul>
         <li>

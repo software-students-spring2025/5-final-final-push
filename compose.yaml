@@ -1,14 +1,10 @@
 
 services:
-  web-app:
-    image: mongodb/mongodb-community-server:6.0-ubi8
-    environment:
-      - MONGO_URI=mongodb+srv://sal9791:haikufinalpush@haiku.b73rvtd.mongodb.net/?retryWrites=true&w=majority&appName=haiku
-      - MONGO_DB=haiku
-    depends_on:
-      - mongodb
   mongodb:
     image: mongodb/mongodb-community-server:6.0-ubi8
+    container_name: mongodb
+    ports:
+      - "27017:27017"
     environment:
       - MONGO_URI=mongodb+srv://sal9791:haikufinalpush@haiku.b73rvtd.mongodb.net/?retryWrites=true&w=majority&appName=haiku
       - MONGO_DB=haiku
@@ -16,5 +12,19 @@ services:
       - type: bind
         source: ./data
         target: /data/db
+    networks:
+      - app_network
 
-
+  web-app:
+    build: ./web-app
+    ports:
+      - "5001:5001"
+    environment:
+      - MONGO_URI=mongodb+srv://sal9791:haikufinalpush@haiku.b73rvtd.mongodb.net/?retryWrites=true&w=majority&appName=haiku
+      - MONGO_DB=haiku
+    depends_on:
+      - mongodb
+  
+networks:
+  app_network:
+    driver: bridge

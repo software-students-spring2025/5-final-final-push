@@ -1,20 +1,25 @@
-# flask app
 import os
-import pymongo
-from flask import Flask, render_template, request, redirect, url_for
-from flask_pymongo import PyMongo
+from flask import Flask, render_template
 from dotenv import load_dotenv
-from pymongo import MongoClient
+from flask_pymongo import PyMongo
 
 load_dotenv()
-mongo_uri = os.environ.get("MONGO_URI") # made an initial db, we can replace with actual db later
-mongo_db = os.environ.get("MONGO_DB")
+mongo_uri = os.environ.get("MONGO_URI")
+mongo_db  = os.environ.get("MONGO_DB")
 
-app = Flask(__name__, template_folder='templates', static_folder='static', static_url_path='/')
+app = Flask(
+    __name__,
+    template_folder='templates',
+    static_folder='static',
+    static_url_path="/"
+)
 
 @app.route('/')
 def index():
+    print("here")
     return render_template('homeHaiku.html')
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=os.environ.get('PORT', 5001), debug=False)
+    port = int(os.environ.get('PORT', 5001))
+    app.run(host='0.0.0.0', port=port, debug=False)
+    print("App running on port " + str(port))
