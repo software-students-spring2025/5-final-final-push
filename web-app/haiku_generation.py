@@ -44,7 +44,7 @@ def generate_line(words, target_syllables):
     line = []
     syllable_count = 0
     tries = 0
-    while syllable_count < target_syllables and tries < 100: # just to make sure it will produce a faulty sentence rather than infinite loop in edgecases, usually wont happen with 5 and 7
+    while syllable_count < target_syllables and tries < 100: # just to make sure it will produce a faulty sentence rather than infinite loop in edgecases, usually wont happen with 5 and 7 syllables
         word = random.choice(words)
         word_syllables = count_syllables(word)
         if syllable_count + word_syllables <= target_syllables:
@@ -55,11 +55,15 @@ def generate_line(words, target_syllables):
 
 def generate_haiku(theme):
     """Generate a 5-7-5 haiku based on a theme."""
+    fallback_words = ["wind", "moon", "star", "dream", "sky", "light", "tree", "river"] #in case of small word bank, can add more
     words = get_related_words(theme)
     if not words:
         print(f"No related words found for '{theme}'. Using fallback words.")
-        words = ["wind", "moon", "star", "dream", "sky", "light", "tree", "river"] #can add more
-
+        words = fallback_words
+    elif len(words) < 5:
+        print(f"Not enough related words found for '{theme}'. Adding fallback words in.")
+        words = fallback_words + words
+        
     common_words = [
         'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'with',
         'without', 'upon', 'for', 'to', 'of', 'is', 'was', 'be', 'are' 
@@ -74,5 +78,5 @@ def generate_haiku(theme):
 if __name__ == "__main__":
     theme = input("Enter a theme for the haiku: ").strip()
     haiku = generate_haiku(theme)
-    print("\nHere is your haiku:\n")
+    print("\nHere is your haiku for '{theme}':\n")
     print(haiku)
