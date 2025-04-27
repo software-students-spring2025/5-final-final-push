@@ -59,6 +59,12 @@ def generate_haiku(theme):
     if not words:
         print(f"No related words found for '{theme}'. Using fallback words.")
         words = ["wind", "moon", "star", "dream", "sky", "light", "tree", "river"] #can add more
+
+    common_words = [
+        'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'with',
+        'without', 'upon', 'for', 'to', 'of', 'is', 'was', 'be', 'are' 
+    ]
+    words = words + common_words
     
     line1 = generate_line(words, 5)
     line2 = generate_line(words, 7)
