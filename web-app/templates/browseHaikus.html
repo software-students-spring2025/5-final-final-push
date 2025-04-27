@@ -2,36 +2,42 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Browse Haikus</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
-<body>
 
-  <h1>Browse Haikus</h1>
+<body class="browse">
+  <header>
+    <h1>Browse Haikus</h1>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="writeHaiku.html">Write Your Own</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <nav>
-    <a href="haikuHome.html">Home</a> |
-    <a href="writeHaiku.html">Write Your Own</a> |
-    <a href="aboutHaiku.html">About</a>
-  </nav>
-
-  <hr>
-
-  {% if haikus %}
-
-    {% for haiku in haikus %}
-      <div>
-        <p>{{ haiku.line1 }}</p>
-        <p>{{ haiku.line2 }}</p>
-        <p>{{ haiku.line3 }}</p>
-        <hr>
-      </div>
-    {% endfor %}
-
-  {% else %}
-    <p>No haikus have been posted.</p>
-  {% endif %}
-
-
+  <main>
+    <section class="haiku-list">
+      {% if haikus %}
+        <ul>
+          {% for haiku in haikus %}
+            <li>
+              <blockquote>
+                {{ haiku.line1 }}<br />
+                {{ haiku.line2 }}<br />
+                {{ haiku.line3 }}
+              </blockquote>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No haikus have been posted.</p>
+      {% endif %}
+    </section>
+  </main>
 </body>
 </html>
