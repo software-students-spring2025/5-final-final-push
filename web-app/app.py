@@ -16,8 +16,27 @@ app = Flask(
 
 @app.route('/')
 def index():
-    print("here")
     return render_template('homeHaiku.html')
+
+@app.route('/about')
+def about():
+    return render_template('aboutHaikus.html')
+
+@app.route('/browse')
+def browse():
+    return render_template('browseHaikus.html')
+
+@app.route('/saved')
+def saved():
+    return render_template('savedHaikus.html')
+
+@app.route('/search')
+def search():
+    return render_template('searchHaikus.html')
+
+@app.route('/write')
+def write():
+    return render_template('writeHaiku.html')
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5001))

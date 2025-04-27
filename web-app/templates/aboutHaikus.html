@@ -2,25 +2,30 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Blossom Haikus</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
-<body>
+<body class="about">
+  <header>
+    <h1>About Blossom Haikus</h1>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/browse">Browse Haikus</a></li>
+        <li><a href="/write">Write Your Own Haiku</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <h1>About Blossom Haikus</h1>
-
-  <nav>
-    <a href="haikuHome.html">Home</a> |
-    <a href="browseHaikus.html">Browse Haikus</a> |
-    <a href="writeHaiku.html">Write Your Own Haiku</a>
-  </nav>
-
-  <hr>
-
-  <p><strong>Blossom Haikus</strong> is an open and creative space for discovering and writing haiku poetry—short, expressive poems that traditionally follow a 5-7-5 syllable structure. Haiku invites readers to reflect on small, beautiful moments found in life. This app allows you to write your own haikus, explore others' shared poems, and connect through the power of words.</p>
-
-  <hr>
-
+  <main>
+    <section>
+      <p>
+        <strong>Blossom Haikus</strong> is an open and creative space for discovering and writing haiku poetry—short, expressive poems that traditionally follow a 5-7-5 syllable structure. Haiku invites readers to reflect on small, beautiful moments found in life. This app allows you to write your own haikus, explore others' shared poems, and connect through the power of words.
+      </p>
+    </section>
+  </main>
 </body>
 </html>
