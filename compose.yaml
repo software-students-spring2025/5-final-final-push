@@ -1,24 +1,20 @@
 
 services:
-  mongodb:
-    image: mongo
-    container_name: mongodb
-    environment:
-      - MONGO_URI=
-      - MONGO_DB=
-      - MONGO_HOST=mongo
-      - FLASK_ENV=development
-    ports:
-      - "27017:27017"
-
   web-app:
-    build: ./web-app
+    image: mongodb/mongodb-community-server:6.0-ubi8
     environment:
-      - MONGO_URI=
-      - MONGO_DB=
-      - FLASK_ENV=development
-    ports: 
-      - "5000:5000"
+      - MONGO_URI=mongodb+srv://sal9791:haikufinalpush@haiku.b73rvtd.mongodb.net/?retryWrites=true&w=majority&appName=haiku
+      - MONGO_DB=haiku
     depends_on:
       - mongodb
+  mongodb:
+    image: mongodb/mongodb-community-server:6.0-ubi8
+    environment:
+      - MONGO_URI=mongodb+srv://sal9791:haikufinalpush@haiku.b73rvtd.mongodb.net/?retryWrites=true&w=majority&appName=haiku
+      - MONGO_DB=haiku
+    volumes:
+      - type: bind
+        source: ./data
+        target: /data/db
+
 
