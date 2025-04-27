@@ -26,6 +26,18 @@ def about():
 def browse():
     return render_template('browseHaikus.html')
 
+@app.route('/saved')
+def saved():
+    return render_template('savedHaikus.html')
+
+@app.route('/search')
+def search():
+    return render_template('searchHaikus.html')
+
+@app.route('/write')
+def write():
+    return render_template('writeHaiku.html')
+
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5001))
     app.run(host='0.0.0.0', port=port, debug=False)
