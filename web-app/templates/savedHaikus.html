@@ -2,38 +2,43 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Favorite Haikus</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Favorite Haikus Saved</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
-<body>
+<body class="saved">
+  <header>
+    <h1>Your Favorite Haikus Saved</h1>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/browse">Browse</a></li>
+        <li><a href="/write">Write</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <h1>Your Favorite Haikus Saved</h1>
-
-  <nav>
-    <a href="haikuHome.html">Home</a> |
-    <a href="browseHaikus.html">Browse</a> |
-    <a href="writeHaiku.html">Write</a> |
-    <a href="aboutHaiku.html">About</a>
-  </nav>
-
-  <hr>
-
-  {% if favorites %}
-    {% for haiku in favorites %}
-      <div>
-        <p>{{ haiku.line1 }}</p>
-        <p>{{ haiku.line2 }}</p>
-        <p>{{ haiku.line3 }}</p>
-        <hr>
-      </div>
-    {% endfor %}
-
-  {% else %}
-
-    <p>You haven't saved any haiku.</p>
-
-  {% endif %}
-
+  <main>
+    <section class="favorites-list">
+      {% if favorites %}
+        <ul>
+          {% for haiku in favorites %}
+            <li>
+              <blockquote>
+                {{ haiku.line1 }}<br />
+                {{ haiku.line2 }}<br />
+                {{ haiku.line3 }}
+              </blockquote>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>You haven't saved any haiku.</p>
+      {% endif %}
+    </section>
+  </main>
 </body>
 </html>
