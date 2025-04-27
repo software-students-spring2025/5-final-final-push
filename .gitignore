@@ -1,6 +1,9 @@
 # mac junk
 .DS_Store
 
+# was told to ignore this by digitalocean
+*.pyc
+
 # visual studio code junk
 .vscode/
 .vscode/settings.json
