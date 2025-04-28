@@ -12,9 +12,9 @@ An exercise to put to practice software development teamwork, subsystem communic
 # Project Description
 Originating from Japan, our web app Haiku Blossom will allow for users to write, browse, and share Haiku poetry. Users can choose a theme for their poem they would like to work with, in addition to three words that will be relevant to the content of the poem.
 
-# Running On All Services
+# Running Full Application
 
-To Build and Run All Services:
+To Build and Run Full Application:
 1. `docker-compose up --build`
 2. Visit `http://localhost:5001/`
 
