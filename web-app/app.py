@@ -39,6 +39,10 @@ def search():
 def write():
     return render_template('writeHaiku.html')
 
+@app.route('/submit')
+def submit():
+    return render_template('submitHaiku.html')
+
 @app.route('/generate-haiku', methods=['POST'])
 def generate_haiku():
     theme = request.form.get('theme')

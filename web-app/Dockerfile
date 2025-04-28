@@ -8,7 +8,7 @@ WORKDIR /app
 RUN pip install pipenv
 
 # Copy Pipenv files first to install deps early
-COPY Pipfile ./
+COPY Pipfile Pipfile.lock ./
 
 # Install dependencies
 RUN pipenv install --deploy --ignore-pipfile
