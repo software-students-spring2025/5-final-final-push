@@ -111,3 +111,52 @@
   }
 }
 
+body.write .write-form {
+  display: grid;
+  gap: 2rem;
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+body.write .card {
+  background-color: #fffdfa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+body.write .form-group {
+  margin-bottom: 1rem;
+}
+
+body.write label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #3f352e;
+}
+
+body.write input[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #c9b49a;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+body.write button {
+  display: inline-block;
+  background-color: #c9b49a;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+body.write button:hover {
+  background-color: #afa185;
+}
