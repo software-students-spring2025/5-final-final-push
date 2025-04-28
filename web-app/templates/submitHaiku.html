@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Haiku Submission</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
-<body>
 
-  <h1>Thank you for sharing your haiku!</h1>
+<body class="submit">
+  <header>
+    <h1>Thank you for sharing your haiku!</h1>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/browse">Browse Haikus</a></li>
+        <li><a href="/write">Write Another Haiku</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <nav>
-    <a href="haikuHome.html">Home</a> |
-    <a href="browseHaikus.html">Browse Haikus</a> |
-    <a href="writeHaiku.html">Write Another Haiku</a>
-  </nav>
-
-  <hr>
-
-  <p>Your haiku has been successfully submitted and saved.</p>
-
-  <p>Continue to browse others' Haikus or create more!</p>
-  
-  <hr>
-
+  <main>
+    <section class="submission-confirmation">
+      <p>Your haiku has been successfully submitted and saved.</p>
+      <p>Continue to browse others' haikus or create more!</p>
+    </section>
+  </main>
 </body>
 </html>
