@@ -31,5 +31,7 @@ jobs:
       - name: Run DB tests
         run: |
           cd web-app
-          pipenv run pytest
+          pipenv install pytest
+          pipenv --venv
+          pipenv run python -m pytest
 
