@@ -16,10 +16,6 @@ An exercise to put to practice software development teamwork, subsystem communic
 # Project Description
 Originating from Japan, our web app Haiku Blossom will allow for users to write, browse, and share Haiku poetry. Users can choose a theme for their poem they would like to work with, in addition to three words that will be relevant to the content of the poem.
 
-# .env File
-
-.env File is linked [here](https://github.com/software-students-spring2025/5-final-final-push/blob/env-file/web-app/.env)
-
 # Running Full Application
 
 To Build and Run Full Application:
