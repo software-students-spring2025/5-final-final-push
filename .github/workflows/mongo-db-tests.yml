@@ -1,4 +1,4 @@
-name: MongoDB Tests
+name: MongoDB CI
 
 on:
   push:
