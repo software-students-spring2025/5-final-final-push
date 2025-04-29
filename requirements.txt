@@ -4,3 +4,4 @@ pymongo
 nltk
 pytest
 pytest-cov
+dotenv

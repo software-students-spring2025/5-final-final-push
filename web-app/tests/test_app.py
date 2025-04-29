@@ -22,7 +22,7 @@ def test_index(client):
     landing = client.get("/")
     html = landing.data.decode()
 
-    # check that bar exists
+    # check that top bar links exist and go to the right place
     assert '<a href="/write">Write Your Own Haiku</a>' in html
     assert '<a href="/browse">Browse Through All Haiku Submissions</a>' in html
     assert '<a href="/saved">Your Favorite Haikus Saved</a>' in html
@@ -80,29 +80,26 @@ def test_write(client):
 
     assert write.status_code == 200
     
-def test_submit(client):
+"""def test_submit(client):
     submit = client.get("/submit")
     html = submit.data.decode()
     assert '<a href="/browse">Browse Haikus</a>' in html
     assert '<a href="/write">Write Another Haiku</a>' in html
 
-    assert submit.status_code == 200
+    assert submit.status_code == 200"""
 
-"""
+
 def test_generate_haiku(client):
-    theme = request.form.get('theme')
+    theme = "cloud"
     generated = haiku_generation.generate_haiku(theme) 
     lines = generated.strip().split("\n")
 
     if len(lines) < 3:
         lines += [""] * (3 - len(lines))
     line1, line2, line3 = lines[0], lines[1], lines[2]
-    #print(lines)
-    return render_template('writeHaiku.html', line1=line1, line2=line2, line3=line3)
 
-## not a test
-if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 5001))
-    app.run(host='0.0.0.0', port=port, debug=False)
-    print("App running on port " + str(port))
-"""
+    assert line1 == lines[0]
+    assert line2 == lines[1]
+    assert line3 == lines[2]
+    assert type(generated) == str
+

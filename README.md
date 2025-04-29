@@ -38,8 +38,21 @@ docker run --name mongodb -d -p 27017:27017 \
 ```
 
 # Running Unit Tests
-Running Unit Tests Locally on the Web App:
-1. `cd web-app`
-2. `pipenv install --dev`
-3. `pipenv shell`
-4. `pytest --cov`
+Running unit tests locally on the web app:
+
+Make sure you've install pytest first:
+```
+pip install pytest
+```
+
+```
+cd web-app
+```
+
+```
+pipenv install --dev
+```
+
+```
+PYTHONPATH=. pipenv run pytest tests/
+```
