@@ -1,12 +1,13 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for
-from dotenv import load_dotenv
 from flask_pymongo import PyMongo
+from pymongo import MongoClient
 import haiku_generation
+from dotenv import load_dotenv
+import os
+from datetime import datetime
 
 load_dotenv()
-mongo_uri = os.environ.get("MONGO_URI")
-mongo_db  = os.environ.get("MONGO_DB")
 
 app = Flask(
     __name__,
@@ -14,6 +15,14 @@ app = Flask(
     static_folder='static',
     static_url_path="/"
 )
+
+# Debug print to confirm Mongo URI loaded properly
+mongo_uri = os.environ.get("MONGO_URI")
+print("🔍 MONGO_URI =", mongo_uri)
+
+app.config["MONGO_URI"] = mongo_uri
+client = MongoClient(mongo_uri, tls=True, tlsAllowInvalidCertificates=True)
+db = client[os.environ.get("MONGO_DB", "haiku")]
 
 @app.route('/')
 def index():
@@ -41,8 +50,20 @@ def write():
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    haiku_text = request.form.get('haiku_text')
-    return render_template('submitHaiku.html', haiku_text=haiku_text)
+    author = request.form.get('author')
+    line1 = request.form.get('line1')
+    line2 = request.form.get('line2')
+    line3 = request.form.get('line3')
+
+    db.haikus.insert_one({
+    "author": author,
+    "line1": line1,
+    "line2": line2,
+    "line3": line3,
+    "timestamp": datetime.utcnow(),
+})
+
+    return render_template('submitHaiku.html', author=author, line1=line1, line2=line2, line3=line3)
 
 
 @app.route('/generate-haiku', methods=['POST'])

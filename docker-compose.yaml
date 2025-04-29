@@ -1,33 +1,16 @@
+version: "3.9"
 
 services:
-  mongodb:
-    image: mongodb/mongodb-community-server:6.0-ubi8
-    container_name: mongodb
-    ports:
-      - "27017:27017"
-    environment:
-      - MONGO_URI=mongodb+srv://sal9791:haikufinalpush@haiku.b73rvtd.mongodb.net/?retryWrites=true&w=majority&appName=haiku
-      - MONGO_DB=haiku
-    volumes:
-      - ./data:/data/db
-    networks:
-      - app_network
-    command: >
-      bash -c "
-        chown -R 999:999 /data/db &&
-        exec mongod --bind_ip_all
-      "
-
   web-app:
     build: ./web-app
+    container_name: web-app
     ports:
       - "5001:5001"
-    environment:
-      - MONGO_URI=mongodb+srv://sal9791:haikufinalpush@haiku.b73rvtd.mongodb.net/?retryWrites=true&w=majority&appName=haiku
-      - MONGO_DB=haiku
-    depends_on:
-      - mongodb
-  
+    env_file:
+      - ./web-app/.env  # contains your MONGO_URI for Atlas
+    networks:
+      - app_network
+
 networks:
   app_network:
     driver: bridge
