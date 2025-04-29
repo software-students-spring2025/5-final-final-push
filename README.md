@@ -52,3 +52,7 @@ pipenv install --dev
 ```
 PYTHONPATH=. pipenv run pytest tests/
 ```
+
+# Accessing Docker image on DockerHub
+
+Docker image on DockerHub: https://hub.docker.com/repository/docker/sal9791/final-push/general
