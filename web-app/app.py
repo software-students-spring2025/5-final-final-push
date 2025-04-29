@@ -2,11 +2,17 @@ import os
 from flask import Flask, render_template, request, redirect, url_for
 from dotenv import load_dotenv
 from flask_pymongo import PyMongo
+from pymongo import MongoClient
 import haiku_generation
 
 load_dotenv()
 mongo_uri = os.environ.get("MONGO_URI")
 mongo_db  = os.environ.get("MONGO_DB")
+
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
+client = MongoClient(MONGO_URI)
+db = client["haiku"]              
+haikus_collection = db["haikus"]
 
 app = Flask(
     __name__,
@@ -24,8 +30,9 @@ def about():
     return render_template('aboutHaikus.html')
 
 @app.route('/browse')
-def browse():
-    return render_template('browseHaikus.html')
+def browse_haikus():
+    haikus = list(haikus_collection.find())  
+    return render_template('browseHaikus.html', haikus=haikus)
 
 @app.route('/saved')
 def saved():
@@ -53,10 +60,18 @@ def generate_haiku():
 
     if len(lines) < 3:
         lines += [""] * (3 - len(lines))
-    line1, line2, line3 = lines[0], lines[1], lines[2]
-    #print(lines)
-    return render_template('writeHaiku.html', line1=line1, line2=line2, line3=line3)
 
+    line1, line2, line3 = lines[0], lines[1], lines[2]
+
+    # Save to MongoDB
+    haikus_collection.insert_one({
+        "theme": theme,
+        "line1": line1,
+        "line2": line2,
+        "line3": line3
+    })
+
+    return render_template('writeHaiku.html', line1=line1, line2=line2, line3=line3)
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5001))

@@ -22,21 +22,16 @@
 
   <main>
     <section class="haiku-list">
-      {% if haikus %}
-        <ul>
-          {% for haiku in haikus %}
-            <li>
-              <blockquote>
-                {{ haiku.line1 }}<br />
-                {{ haiku.line2 }}<br />
-                {{ haiku.line3 }}
-              </blockquote>
-            </li>
-          {% endfor %}
-        </ul>
-      {% else %}
-        <p>No haikus have been posted.</p>
-      {% endif %}
+        {% for haiku in haikus %}
+            <div class="haiku">
+                <strong>Theme:</strong> {{ haiku.theme or 'Untitled' }}<br>
+                <p>{{ haiku.line1 }}</p>
+                <p>{{ haiku.line2 }}</p>
+                <p>{{ haiku.line3 }}</p>
+            </div>
+        {% else %}
+            <p>No haikus found yet!</p>
+        {% endfor %}
     </section>
   </main>
 </body>
