@@ -9,11 +9,14 @@ services:
       - MONGO_URI=mongodb+srv://sal9791:haikufinalpush@haiku.b73rvtd.mongodb.net/?retryWrites=true&w=majority&appName=haiku
       - MONGO_DB=haiku
     volumes:
-      - type: bind
-        source: ./data
-        target: /data/db
+      - ./data:/data/db
     networks:
       - app_network
+    command: >
+      bash -c "
+        chown -R 999:999 /data/db &&
+        exec mongod --bind_ip_all
+      "
 
   web-app:
     build: ./web-app
