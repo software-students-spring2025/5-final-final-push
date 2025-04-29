@@ -16,6 +16,15 @@ RUN pipenv install --deploy --ignore-pipfile
 # Copy rest of the app (code, static files, templates)
 COPY . .
 
+# Install system dependencies 
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set NLTK data location and download necessary corpora
+ENV NLTK_DATA=/usr/share/nltk_data
+RUN pipenv run python -m nltk.downloader -d /usr/share/nltk_data wordnet omw-1.4
+
 # Expose port for Flask app
 EXPOSE 5001
 
