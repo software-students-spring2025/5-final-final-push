@@ -34,14 +34,6 @@ def browse_haikus():
     haikus = list(haikus_collection.find())  
     return render_template('browseHaikus.html', haikus=haikus)
 
-@app.route('/saved')
-def saved():
-    return render_template('savedHaikus.html')
-
-@app.route('/search')
-def search():
-    return render_template('searchHaikus.html')
-
 @app.route('/write')
 def write():
     return render_template('writeHaiku.html')
@@ -50,7 +42,6 @@ def write():
 def submit():
     haiku_text = request.form.get('haiku_text')
     return render_template('submitHaiku.html', haiku_text=haiku_text)
-
 
 @app.route('/generate-haiku', methods=['POST'])
 def generate_haiku():
