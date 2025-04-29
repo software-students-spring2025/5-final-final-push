@@ -11,6 +11,7 @@ pymongo = "*"
 pytest = "*"
 pytest-cov = "*"
 python-dotenv = "*"
+nltk = "*"
 
 [dev-packages]
 pytest = "*"

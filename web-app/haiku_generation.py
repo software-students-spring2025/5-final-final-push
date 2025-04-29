@@ -55,7 +55,16 @@ def generate_line(words, target_syllables):
 
 def generate_haiku(theme):
     """Generate a 5-7-5 haiku based on a theme."""
-    fallback_words = ["wind", "moon", "star", "dream", "sky", "light", "tree", "river"] #in case of small word bank, can add more
+    fallback_words = [
+    "wind", "moon", "star", "dream", "sky", "light", "tree", "river", "flower",
+    "stone", "mountain", "cloud", "rain", "sun", "mist", "snow", "breeze",
+    "leaf", "shadow", "forest", "meadow", "ocean", "wave", "island", "path",
+    "song", "night", "dawn", "twilight", "petal", "field", "grass", "valley",
+    "bird", "butterfly", "firefly", "echo", "horizon", "earth", "brook",
+    "pond", "fog", "branch", "root", "moss", "bark", "pebble", "stone", "bloom",
+    "glow", "chill", "whisper", "serenity", "silence", "lily", "vine", "drift"
+    ]
+    #in case of small word bank
     words = get_related_words(theme)
     if not words:
         print(f"No related words found for '{theme}'. Using fallback words.")
