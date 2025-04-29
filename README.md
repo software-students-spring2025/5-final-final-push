@@ -35,10 +35,3 @@ Running Unit Tests Locally on the Web App:
 2. `pipenv install --dev`
 3. `pipenv shell`
 4. `pytest --cov`
-
-Running Unit Tests Locally on the ML Client:
-1. `cd machine-learning-client`
-2. `pipenv install --dev`
-3. `pipenv shell`
-4. `pytest --cov`
-
