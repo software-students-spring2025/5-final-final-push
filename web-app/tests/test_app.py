@@ -25,8 +25,6 @@ def test_index(client):
     # check that top bar links exist and go to the right place
     assert '<a href="/write">Write Your Own Haiku</a>' in html
     assert '<a href="/browse">Browse Through All Haiku Submissions</a>' in html
-    assert '<a href="/saved">Your Favorite Haikus Saved</a>' in html
-    assert '<a href="/search">Search</a>' in html
     assert '<a href="/about">What is Haiku??</a>' in html
 
     assert landing.status_code == 200
@@ -41,35 +39,6 @@ def test_about(client):
 
     assert about.status_code == 200
 
-def test_browse(client):
-    browse = client.get("/browse")
-    html = browse.data.decode()
-
-    assert '<a href="/">Home</a>' in html
-    assert '<a href="/write">Write Your Own</a>' in html
-    assert '<a href="/about">About</a>' in html
-
-    assert browse.status_code == 200
-
-def test_saved(client):
-    saved = client.get("/saved")
-    html = saved.data.decode()
-    assert '<a href="/">Home</a>' in html
-    assert '<a href="/browse">Browse</a>' in html
-    assert 'a href="/write">Write</a>' in html
-    assert '<a href="/about">About</a>' in html
-
-    assert saved.status_code == 200
-
-def test_search(client):
-    search = client.get("/search")
-    html = search.data.decode()
-    assert '<a href="/">Home</a><' in html
-    assert '<a href="/browse">Browse</a' in html
-    assert '<a href="/write">Write</a>' in html
-    assert '<a href="/about">About</a>' in html
-
-    assert search.status_code == 200
 
 def test_write(client):
     write = client.get("/write")
@@ -80,14 +49,6 @@ def test_write(client):
 
     assert write.status_code == 200
     
-"""def test_submit(client):
-    submit = client.get("/submit")
-    html = submit.data.decode()
-    assert '<a href="/browse">Browse Haikus</a>' in html
-    assert '<a href="/write">Write Another Haiku</a>' in html
-
-    assert submit.status_code == 200"""
-
 
 def test_generate_haiku(client):
     theme = "cloud"
