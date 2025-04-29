@@ -6,10 +6,10 @@ name = "pypi"
 [packages]
 requests = "*"
 flask = "*"
-flask-pymongo = "*"
 pymongo = "*"
 pytest = "*"
 pytest-cov = "*"
+flask-pymongo = "*"
 
 [dev-packages]
 pytest = "*"
