@@ -1,16 +1,23 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Haiku Submission</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <meta charset="UTF-8">
+    <title>Haiku Submitted</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
+<body>
+    <div class="container">
 
-<body class="submit">
-  <header>
-    <h1>Thank you for sharing your haiku!</h1>
+      
+        {% if haiku_text %}
+            <div class="submitted-haiku">
+                <h2>Your Haiku:</h2>
+                <p>{{ haiku_text | e }}</p>
+            </div>
+        {% endif %}
+
+        <h1>Thank you for sharing your haiku!</h1>
     <nav>
       <ul>
         <li><a href="/">Home</a></li>
